@@ -1,9 +1,10 @@
 # qsog
-Qlik Sense Object ID Grabber (Bookmarklet)
+Qlik Sense Object Grabber (Bookmarklet to get Qlik Sense object IDs)
 
 
 ## Purpose
 This bookmarklet is designed to be saved into a bookmark on your browser bar, and is a temporary way of allowing easy extraction of Qlik Sense object IDs.
+
 
 ## Use
 1. Create a bookmark and paste the following into the address section:
@@ -12,6 +13,9 @@ javascript:(function()%7Bfunction%20callback()%7Bconsole.log(%22For%20updates%20
 ```
 
 2. Navigate to a Qlik Sense sheet and click the bookmark. Each time you refresh or navigate away you will need to click the button again.
+3. qsOG will place a green box containing the object ID in the bottom right of each object, and also log this information to the console.
+4. To copy the object ID, click on the text to copy it to the clipboard
+
 
 ## Tested configurations
 Qlik Sense
@@ -22,8 +26,11 @@ Qlik Sense
 Browsers
 * Chrome 63
 
+
 ## Known issues
 * The DIV I've picked to identify the object sometimes also selects blank space. I need to repoint this to use a different ID or class.
+* The z-index was increased from 2 to 99999 to counter interactions with the Qlik Sense context menu. This causes overlaps when expanding objects to full screen and needs to be reduced.
+
 
 ## Notes
 * The bookmarklet was generated using an online tool: https://mrcoles.com/bookmarklet/
