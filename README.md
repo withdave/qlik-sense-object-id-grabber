@@ -30,6 +30,7 @@ Browsers
 ## Known issues
 * The DIV I've picked to identify the object sometimes also selects blank space. I need to repoint this to use a different ID or class.
 * The z-index was increased from 2 to 99999 to counter interactions with the Qlik Sense context menu. This causes overlaps when expanding objects to full screen and needs to be reduced.
+* Problems in versions of IE where the DIVs do not apply the correct styles. To fix by explicitly setting.
 
 
 ## Notes
