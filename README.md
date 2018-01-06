@@ -1,5 +1,7 @@
 # qsog
-Qlik Sense Object Grabber (Bookmarklet to get Qlik Sense object IDs)
+Qlik Sense Object Grabber (Bookmarklet to get Qlik Sense object IDs).
+
+Either create a bookmark yourself below, or go to https://withdave.github.io/qsog/ and drag the button to your bookmarks bar.
 
 
 ## Purpose
