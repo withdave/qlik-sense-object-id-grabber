@@ -1,6 +1,14 @@
 // Object Grabber
 // This script adds the ID of every QS object into the bottom right of each object
 
+// Check to see if there are any ogOverlay divs already on the screen and remove if so
+var ogExistingElements = document.getElementsByClassName("ogOverlay");
+
+// Iterate over elements to remove
+for (var i=0; i<ogExistingElements.length; i++) {
+    ogExistingElements[0].parentNode.removeChild(ogExistingElements[0]);
+}
+
 // Get list of all object elements. If this doesn't work, try looking for DIVs with attributes set in tid or qva-radial-context-menu
 var ogElements = document.getElementsByClassName("qv-gridcell");
 
@@ -10,9 +18,17 @@ for (var i=0; i<ogElements.length; i++) {
 
     // Build outer div and append
     var ogHtmlOuter = document.createElement("div");
-    ogHtmlOuter.style = "position:absolute; bottom:0;right:0;z-index:99999;margin:2px;padding:10px;background-color:#6bb345;user-select:text;color:#FFFFFF";
+    ogHtmlOuter.style.position = "absolute";
+    ogHtmlOuter.style.bottom = 0;
+    ogHtmlOuter.style.right = 0;
+    ogHtmlOuter.style.zIndex = 2;
+    ogHtmlOuter.style.margin = "2px";
+    ogHtmlOuter.style.padding = "10px";
+    ogHtmlOuter.style.backgroundColor = "#6bb345";
+    ogHtmlOuter.style.userSelect = "text";
+    ogHtmlOuter.style.color = "#FFFFFF";
     ogHtmlOuter.className = "ogOverlay";
-    ogHtmlOuter.innerHTML = "<a id=\"ogOverlay" + i + "\" onclick=\"ogCopyToClipboard(document.getElementById('ogOverlay" + i + "').innerHTML)\" style=\"color:#FFFFFF;text-decoration:none;\">" + ogElement.getAttribute("tid") + "</a>";
+    ogHtmlOuter.innerHTML = "<a id=\"ogOverlay" + i + "\" onclick=\"ogCopyToClipboard(document.getElementById('ogOverlay" + i + "').innerHTML)\" style=\"color:#FFFFFF;text-decoration:none;user-select:text;\">" + ogElement.getAttribute("tid") + "</a>";
     ogElement.appendChild(ogHtmlOuter);
 
     // Write out to console each time
