@@ -9,7 +9,7 @@ This bookmarklet is designed to be saved into a bookmark on your browser bar, an
 ## Use
 1. Create a bookmark and paste the following into the address section:
 ```
-javascript:(function()%7Bfunction%20callback()%7Bconsole.log(%22For%20updates%20see%20https%3A%2F%2Fgithub.com%2Fwithdave%2Fqsog%22)%7Dvar%20s%3Ddocument.createElement(%22script%22)%3Bs.src%3D%22https%3A%2F%2Fcdn.rawgit.com%2Fwithdave%2Fqsog%2Fmaster%2Fqsog.js%22%3Bif(s.addEventListener)%7Bs.addEventListener(%22load%22%2Ccallback%2Cfalse)%7Delse%20if(s.readyState)%7Bs.onreadystatechange%3Dcallback%7Ddocument.body.appendChild(s)%3B%7D)()
+javascript:(function()%7Bfunction callback()%7Bconsole.log("For updates see https%3A%2F%2Fgithub.com%2Fwithdave%2Fqsog")%7Dvar s%3Ddocument.createElement("script")%3Bs.src%3D"https%3A%2F%2Frawgit.com%2Fwithdave%2Fqsog%2Fmaster%2Fqsog.js"%3Bif(s.addEventListener)%7Bs.addEventListener("load"%2Ccallback%2Cfalse)%7Delse if(s.readyState)%7Bs.onreadystatechange%3Dcallback%7Ddocument.body.appendChild(s)%3B%7D)()
 ```
 
 2. Navigate to a Qlik Sense sheet and click the bookmark. Each time you refresh or navigate away you will need to click the button again.
@@ -25,13 +25,16 @@ Qlik Sense
 
 Browsers
 * Chrome 63
+* IE11
+* Edge 40
 
 
 ## Known issues
 * The DIV I've picked to identify the object sometimes also selects blank space. I need to repoint this to use a different ID or class.
-* The z-index was increased from 2 to 99999 to counter interactions with the Qlik Sense context menu. This causes overlaps when expanding objects to full screen and needs to be reduced.
-* Problems in versions of IE where the DIVs do not apply the correct styles. To fix by explicitly setting.
 
+## Resolved issues
+* The z-index was increased from 2 to 99999 to counter interactions with the Qlik Sense context menu. This causes overlaps when expanding objects to full screen and was reduced to 2 again. Appears to work correctly when Ctrl+C used to copy the value.
+* Problems in versions of IE where the DIVs do not apply the correct styles. Fixed by setting properties differently.
 
 ## Notes
 * The bookmarklet was generated using an online tool: https://mrcoles.com/bookmarklet/
