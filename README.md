@@ -27,8 +27,7 @@ Qlik Sense
 
 Browsers
 * Chrome 63
-* IE11
-* Edge 40
+* IE11 (autocopy doesn't always work)
 
 
 ## Known issues
