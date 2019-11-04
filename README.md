@@ -21,9 +21,9 @@ javascript:(function()%7Bfunction callback()%7Bconsole.log("For updates see http
 
 ## Tested configurations
 Qlik Sense
-* June 2017
-* September 2017
-* November 2017
+* All 2017 releases
+* All 2018 releases
+* All 2019 releases up to and including September 2019
 
 Browsers
 * Chrome 63
