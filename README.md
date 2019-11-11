@@ -41,4 +41,3 @@ Browsers
 
 ## Notes
 * The bookmarklet was generated using an online tool: https://mrcoles.com/bookmarklet/
-* RawGit is used to link to the files: https://rawgit.com/
