@@ -3,6 +3,8 @@ Qlik Sense Object Grabber (Bookmarklet to get Qlik Sense object IDs).
 
 Either create a bookmark yourself below, or go to https://withdave.github.io/qsog/ and drag the button to your bookmarks bar.
 
+![GIF Demonstrating use of bookmarklet](qsog_demo.gif)*Demo of bookmarklet in a Qlik Sense app*
+
 
 ## Purpose
 This bookmarklet is designed to be saved into a bookmark on your browser bar, and is a temporary way of allowing easy extraction of Qlik Sense object IDs.
