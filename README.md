@@ -22,10 +22,14 @@ javascript:javascript:(function()%7Bfunction callback()%7Bconsole.log("For updat
 
 
 ## Tested configurations
-Qlik Sense
+Qlik Sense - Client Managed
 * All 2017 releases
 * All 2018 releases
-* All 2019 releases up to and including September 2019
+* All 2019 releases
+* All 2020 releases
+Qlik SaaS
+* Working on 03/12/2020 - but host must be added to tenant Content Security Policy whitelist (e.g. add origin withdave.github.io)
+
 
 Browsers
 * Chrome 63
@@ -36,6 +40,7 @@ Browsers
 
 ## Known issues
 * The DIV I've picked to identify the object sometimes also selects blank space. I need to repoint this to use a different ID or class.
+* Using a live link to github means the origin must be added to the CSP whitelist to work
 
 ## Resolved issues
 * The z-index was increased from 2 to 99999 to counter interactions with the Qlik Sense context menu. This causes overlaps when expanding objects to full screen and was reduced to 2 again. Appears to work correctly when Ctrl+C used to copy the value.
