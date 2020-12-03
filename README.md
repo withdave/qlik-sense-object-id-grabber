@@ -28,7 +28,7 @@ Qlik Sense - Client Managed
 * All 2019 releases
 * All 2020 releases
 Qlik SaaS
-* Working on 03/12/2020 - but host must be added to tenant Content Security Policy whitelist (e.g. add origin withdave.github.io)
+* Working on 03/12/2020 - but host must be added to tenant Content Security Policy whitelist (e.g. add origin withdave.github.io with directive script-src)
 
 
 Browsers
