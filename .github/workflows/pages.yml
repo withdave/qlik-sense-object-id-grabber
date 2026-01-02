@@ -4,9 +4,15 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to deploy (e.g. v2.0.0). Leave empty to deploy latest tag."
+        required: false
+        type: string
 
 permissions:
   contents: read
+  actions: write
   pages: write
   id-token: write
 
@@ -15,8 +21,27 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  dispatch_on_release:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release'
+    steps:
+      - name: Dispatch deploy workflow on master
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const tag = context.payload.release.tag_name;
+            core.info(`Dispatching workflow for tag: ${tag}`);
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'pages.yml',
+              ref: 'master',
+              inputs: { tag },
+            });
+
   build:
     runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -28,8 +53,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [[ "${GITHUB_EVENT_NAME}" == "release" ]]; then
-            TAG="${{ github.event.release.tag_name }}"
+          if [[ -n "${{ inputs.tag }}" ]]; then
+            TAG="${{ inputs.tag }}"
           else
             TAG="$(git tag --list 'v*' --sort=-v:refname | head -n 1)"
             if [[ -z "$TAG" ]]; then
@@ -74,6 +99,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    if: github.event_name == 'workflow_dispatch'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
