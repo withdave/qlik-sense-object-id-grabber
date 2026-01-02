@@ -57,22 +57,13 @@ function pageHtml({ bookmarkletHref, versionLabel }) {
   <body>
     <main>
       <h1>qsog - Qlik Sense Object (id) Grabber</h1>
-      <h2>A bookmarklet for grabbing Qlik Sense Object IDs.</h2>
-
       <p>
         <a class="button" href="${safeHref}" title="${safeTitle}">${safeButtonText}</a>
-        drag this button to the bookmark bar of your browser.
-        <span class="muted">
-          <a href="https://github.com/withdave/qlik-sense-object-id-grabber">qsog</a>
-          is maintained by
-          <a href="https://github.com/withdave">withdave</a>.
-        </span>
+        drag this button to the bookmark bar of your browser. Read more at <a href="https://github.com/withdave/qlik-sense-object-id-grabber">qsog</a>.
       </p>
-
+      <p><img src="qsog_demo.gif" alt="Demo of qsog" /></p>
       <p class="muted">Or create a bookmark manually by copy/pasting the bookmarklet URL:</p>
       <textarea readonly>${bookmarkletHref}</textarea>
-
-      <p><img src="qsog_demo.gif" alt="Demo of qsog" /></p>
     </main>
   </body>
 </html>

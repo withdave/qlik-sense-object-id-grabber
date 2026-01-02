@@ -1,7 +1,8 @@
 # qsog
+
 Qlik Sense Object Grabber (Bookmarklet to get Qlik Sense object IDs).
 
-Create a bookmark using the self-contained bookmarklet from https://withdave.github.io/qsog/.
+Create a bookmark using the self-contained bookmarklet from https://withdave.github.io/qlik-sense-object-id-grabber/.
 
 ![GIF Demonstrating use of bookmarklet](qsog_demo.gif)*Demo of bookmarklet in a Qlik Sense app*
 
@@ -11,19 +12,10 @@ This bookmarklet is designed to be saved into a bookmark on your browser bar, an
 
 ## Use
 
-1. Navigate to https://withdave.github.io/qsog/, and drag the qsog button to your bookmark bar (or create a bookmark using the code in `bookmarklet.txt`)
+1. Navigate to https://withdave.github.io/qlik-sense-object-id-grabber/, and drag the qsog button to your bookmark bar (or create a bookmark using the code in `bookmarklet.txt`)
 2. Navigate to a Qlik Sense sheet and click the bookmark. Each time you refresh or navigate away you will need to click the button again.
 3. qsog will place a green box containing the object ID in the bottom right of each object, and also log this information to the console.
 4. To copy the object ID, click on the text to copy it to the clipboard
-
-## Updates
-
-* 02/01/2026 - Added local build (`npm run build`) and a fully self-contained bookmarklet (no external script injection).
-* 04/11/2019 - Repointed RawGit to GitHub.io (as the former is shutting down). Added minified script version.
-
-## Known issues
-
-* The DIV I've picked to identify the object sometimes also selects blank space. I need to repoint this to use a different ID or class.
 
 ## Local build
 If you want to rebuild the bookmarklet after edits:
