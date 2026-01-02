@@ -1,59 +1,71 @@
-// Object Grabber
-// This script adds the ID of every QS object into the bottom right of each object
-
-// Check to see if there are any ogOverlay divs already on the screen and remove if so
-var ogExistingElements = document.getElementsByClassName("ogOverlay");
-
-// If count is one or more
-if  (ogExistingElements.length>0) {
-
-    // Iterate over elements to remove
-    while(ogExistingElements.length > 0){
-        ogExistingElements[0].parentNode.removeChild(ogExistingElements[0]);    
+(() => {
+  // src/qsog.js
+  (() => {
+    var _a;
+    const OVERLAY_CLASS = "ogOverlay";
+    const TARGET_CLASS = "qv-gridcell";
+    const existing = document.getElementsByClassName(OVERLAY_CLASS);
+    if (existing.length > 0) {
+      while (existing.length > 0) {
+        (_a = existing[0].parentNode) == null ? void 0 : _a.removeChild(existing[0]);
+      }
+      console.log("qsog - cleared screen");
+      return;
     }
-    console.log("qsog - cleared screen");
-    // End here
-
-} else {
-    // If we don't have existing elements on-screen
-    // Get list of all object elements. If this doesn't work, try looking for DIVs with attributes set in tid or qva-radial-context-menu
-    var ogElements = document.getElementsByClassName("qv-gridcell");
-
-    // Iterate over elements
-    for (var i=0; i<ogElements.length; i++) {
-        var ogElement = ogElements[i];
-
-        // Build outer div and append
-        var ogHtmlOuter = document.createElement("div");
-        ogHtmlOuter.style.position = "absolute";
-        ogHtmlOuter.style.bottom = 0;
-        ogHtmlOuter.style.right = 0;
-        ogHtmlOuter.style.zIndex = 2;
-        ogHtmlOuter.style.margin = "2px";
-        ogHtmlOuter.style.padding = "10px";
-        ogHtmlOuter.style.backgroundColor = "#6bb345";
-        ogHtmlOuter.style.userSelect = "text";
-        ogHtmlOuter.style.color = "#FFFFFF";
-        ogHtmlOuter.className = "ogOverlay";
-        ogHtmlOuter.innerHTML = "<a id=\"ogOverlay" + i + "\" onclick=\"ogCopyToClipboard(document.getElementById('ogOverlay" + i + "').innerHTML)\" style=\"color:#FFFFFF;text-decoration:none;user-select:text;\">" + ogElement.getAttribute("tid") + "</a>";
-        ogElement.appendChild(ogHtmlOuter);
-
-        // Write out to console each time
-        console.log("Element " + i + " id: " + ogElement.getAttribute("tid"));
-
+    const elements = document.getElementsByClassName(TARGET_CLASS);
+    for (let i = 0; i < elements.length; i++) {
+      const element = elements[i];
+      const tid = element.getAttribute("tid");
+      if (!tid) continue;
+      const outer = document.createElement("div");
+      outer.style.position = "absolute";
+      outer.style.bottom = "0";
+      outer.style.right = "0";
+      outer.style.zIndex = "2";
+      outer.style.margin = "2px";
+      outer.style.padding = "10px";
+      outer.style.backgroundColor = "#6bb345";
+      outer.style.userSelect = "text";
+      outer.style.color = "#FFFFFF";
+      outer.className = OVERLAY_CLASS;
+      const link = document.createElement("a");
+      link.textContent = tid;
+      link.href = "#";
+      link.style.color = "#FFFFFF";
+      link.style.textDecoration = "none";
+      link.style.userSelect = "text";
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        void copyToClipboard(tid);
+      });
+      outer.appendChild(link);
+      element.appendChild(outer);
+      console.log(`Element ${i} id: ${tid}`);
     }
-}
-
-// Function to copy to clipboard
-function ogCopyToClipboard(string) {
-    function listener(e) {
-    //   e.clipboardData.setData("text/html", str);
-    e.clipboardData.setData("text/plain", string);
-    e.preventDefault();
+    async function copyToClipboard(text) {
+      var _a2;
+      try {
+        if ((_a2 = navigator.clipboard) == null ? void 0 : _a2.writeText) {
+          await navigator.clipboard.writeText(text);
+          console.log(`Copied ${text} to clipboard`);
+          return;
+        }
+      } catch (e) {
+      }
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.setAttribute("readonly", "");
+      textarea.style.position = "fixed";
+      textarea.style.top = "-9999px";
+      textarea.style.left = "-9999px";
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand("copy");
+        console.log(`Copied ${text} to clipboard`);
+      } finally {
+        document.body.removeChild(textarea);
+      }
     }
-    document.addEventListener("copy", listener);
-    document.execCommand("copy");
-    document.removeEventListener("copy", listener);
-    console.log("Copied " + string + " to clipboard");
-};
-
+  })();
+})();
